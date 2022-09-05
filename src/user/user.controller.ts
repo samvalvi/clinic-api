@@ -37,7 +37,7 @@ export class UserController {
     description: "User already exist",
   })
   @ApiBadRequestResponse({
-    description: "Server error",
+    description: "Bad request",
   })
   @Post()
   async create(@Body() createUserDto: CreateUserDto): Promise<User> {
@@ -53,7 +53,7 @@ export class UserController {
     description: "Data not found",
   })
   @ApiBadRequestResponse({
-    description: "Server error",
+    description: "Bad request",
   })
   @Get()
   async findAll(): Promise<User[]> {
@@ -66,7 +66,7 @@ export class UserController {
     type: User,
   })
   @ApiNotFoundResponse({ description: "User not found" })
-  @ApiBadRequestResponse({ description: "Server error" })
+  @ApiBadRequestResponse({ description: "Bad request" })
   @Get(":id")
   async findOne(@Param("id") id: string): Promise<User> {
     return await this.userService.findOne(id);
@@ -74,7 +74,7 @@ export class UserController {
 
   @UseInterceptors(ClassSerializerInterceptor)
   @ApiOkResponse({ description: "User successfully updated", type: User })
-  @ApiBadRequestResponse({ description: "Server error " })
+  @ApiBadRequestResponse({ description: "Bad request" })
   @Patch(":id")
   async update(
     @Param("id") id: string,
@@ -86,7 +86,7 @@ export class UserController {
   @UseInterceptors(ClassSerializerInterceptor)
   @ApiOkResponse({ description: "User successfully deleted", type: User })
   @ApiNotFoundResponse({ description: "User not found" })
-  @ApiBadRequestResponse({ description: "Server error " })
+  @ApiBadRequestResponse({ description: "Bad request" })
   @Delete(":id")
   async remove(@Param("id") id: string): Promise<User> {
     return await this.userService.remove(id);

@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { PassportStrategy } from "@nestjs/passport";
 import { InjectRepository } from "@nestjs/typeorm";
@@ -18,7 +18,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   ) {
     super({
       secretOrKey: configService.get("SECRET_KEY"),
-      jwtfromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     });
   }
 
@@ -29,6 +29,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       where: { id },
     });
 
-    return;
+    if (!admin) {
+      throw new HttpException("Invalid token", HttpStatus.UNAUTHORIZED);
+    }
+
+    // Add to resquest
+    return admin;
   }
 }

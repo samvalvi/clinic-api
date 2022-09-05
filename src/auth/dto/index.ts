@@ -1,2 +1,2 @@
 export { LoginDto } from "./login-admin.dto";
-export { RegisterDto } from "./register-admin.dto";
+export { RegisterAdminDto } from "./register-admin.dto";

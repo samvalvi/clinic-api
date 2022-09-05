@@ -1,7 +1,8 @@
-import { genSaltSync, hashSync } from "bcrypt";
+import { genSaltSync, hashSync, compareSync } from "bcrypt";
 import { Exclude } from "class-transformer";
 import {
   BeforeInsert,
+  BeforeRecover,
   Column,
   CreateDateColumn,
   PrimaryGeneratedColumn,

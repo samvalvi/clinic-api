@@ -1,7 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNotEmpty, IsString, Matches, MinLength } from "class-validator";
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  Matches,
+  MinLength,
+} from "class-validator";
 
-export class CreateAdminDto {
+export class RegisterAdminDto {
   @ApiProperty({
     description: "Admin name",
     example: "John Doe",
